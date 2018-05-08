@@ -2,9 +2,17 @@ pipeline {
   agent any
   stages {
     stage('Build') {
-      steps {
-        mail(subject: 'Job \'${env.JOB_NAME}\' (${env.BUILD_NUMBER}) is waiting for input', body: 'Please go to ${env.BUILD_URL} for more information.', from: 'Jenkins Development', to: 'abdell.gautier@lennar.com')
-        sh 'npm install'
+      parallel {
+        stage('Build') {
+          steps {
+            sh 'npm install'
+          }
+        }
+        stage('') {
+          steps {
+            echo 'Running the Jenkins Build with Willy!'
+          }
+        }
       }
     }
     stage('Test') {
