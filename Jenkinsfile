@@ -63,9 +63,14 @@ pipeline {
         }
       }
     }
-    stage('Deploy To DEV') {
+    stage('Auth Deployment?') {
       steps {
-        echo 'Deploying to DEV environment'
+        input 'Deploy this build to Development'
+      }
+    }
+    stage('Deploy to DEV') {
+      steps {
+        echo 'Deploying this build to Development...'
       }
     }
   }
