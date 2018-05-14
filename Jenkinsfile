@@ -2,22 +2,70 @@ pipeline {
   agent any
   stages {
     stage('Build') {
+      steps {
+        sh 'npm install'
+      }
+    }
+    stage('Tests') {
       parallel {
-        stage('Build') {
+        stage('Tests') {
           steps {
-            sh 'npm install'
+            echo 'Performing Chrome Tests'
           }
         }
-        stage('') {
+        stage('Components') {
           steps {
-            echo 'Running the Jenkins Build with Willy!'
+            echo 'Performing Components Tests'
+          }
+        }
+        stage('Integrations') {
+          steps {
+            echo 'Performing Integrations Tests'
           }
         }
       }
     }
-    stage('Test') {
+    stage('Browser Tests') {
+      parallel {
+        stage('Chrome') {
+          steps {
+            echo 'Performing Chrome Tests'
+          }
+        }
+        stage('Firefox') {
+          steps {
+            echo 'Performing Firefox Tests'
+          }
+        }
+        stage('Internet Explorer') {
+          steps {
+            echo 'Performing Internet Explorer Tests'
+          }
+        }
+        stage('Safari') {
+          steps {
+            echo 'Performing Safari Tests'
+          }
+        }
+      }
+    }
+    stage('Security Tests') {
+      parallel {
+        stage('SQL Injections') {
+          steps {
+            echo 'Performing ZAP Tests'
+          }
+        }
+        stage('Zed Attack Proxy') {
+          steps {
+            echo 'Performing Zed Attack Proxy Tests'
+          }
+        }
+      }
+    }
+    stage('Deploy To DEV') {
       steps {
-        sh './jenkins/scripts/test.sh'
+        echo 'Deploying to DEV environment'
       }
     }
   }
