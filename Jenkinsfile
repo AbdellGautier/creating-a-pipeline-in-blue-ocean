@@ -6,7 +6,7 @@ pipeline {
         echo 'Building the app...'
       }
     }
-    stage('Tests') {
+    stage('Unit Tests') {
       parallel {
         stage('Tests') {
           steps {
@@ -49,18 +49,9 @@ pipeline {
         }
       }
     }
-    stage('Security Tests') {
-      parallel {
-        stage('SQL Injections') {
-          steps {
-            echo 'Performing ZAP Tests'
-          }
-        }
-        stage('Zed Attack Proxy') {
-          steps {
-            echo 'Performing Zed Attack Proxy Tests'
-          }
-        }
+    stage('Security PenTests') {
+      steps {
+        echo 'Performing ZAP Tests'
       }
     }
     stage('Auth Deployment?') {
