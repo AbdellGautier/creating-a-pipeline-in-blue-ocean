@@ -8,11 +8,6 @@ pipeline {
     }
     stage('Unit Tests') {
       parallel {
-        stage('Tests') {
-          steps {
-            echo 'Performing Chrome Tests'
-          }
-        }
         stage('Components') {
           steps {
             echo 'Performing Components Tests'
