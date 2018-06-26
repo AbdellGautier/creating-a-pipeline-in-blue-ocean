@@ -8,16 +8,11 @@ pipeline {
             sh 'npm install'
           }
         }
-        stage('') {
+        stage('error') {
           steps {
             echo 'Running the Jenkins Build with Willy!'
           }
         }
-      }
-    }
-    stage('Test') {
-      steps {
-        sh './jenkins/scripts/test.sh'
       }
     }
   }
