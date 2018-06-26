@@ -17,7 +17,7 @@ pipeline {
     }
     stage('Get Azure Scripts') {
       steps {
-        git(url: 'https://AbdellGautier@Winter01!github.lennar.com/AbdellGautier/azlendeploy-app-angular6.git', branch: 'master')
+        git(url: 'https://AbdellGautier:Winter01!@github.lennar.com/AbdellGautier/azlendeploy-app-angular6.git', branch: 'master')
       }
     }
     stage('Verify Deployment') {
