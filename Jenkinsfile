@@ -15,5 +15,15 @@ pipeline {
         }
       }
     }
+    stage('Get Azure Scripts') {
+      steps {
+        git(url: 'https://github.lennar.com/AbdellGautier/azlendeploy-app-angular6.git', branch: 'master')
+      }
+    }
+    stage('Verify Deployment') {
+      steps {
+        fileExists 'deploy.ps1'
+      }
+    }
   }
 }
